@@ -1,15 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 
 def webscrape(url):
-    response = requests.get(url)
+    headers = {"User-Agent": "Mozilla/5.0"}
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
-    paragraphs = [p.get_text() for p in soup.find_all("p")]
-    return "\n".join(paragraphs)
+    elements = soup.find_all(["p", "li", "h1", "h2", "h3"])
+    text = "\n".join(el.get_text() for el in elements)
+    return text.strip()
+
 
 url = "https://en.wikipedia.org/wiki/LangChain"  # change to any URL you want
 data = webscrape(url)
