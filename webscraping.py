@@ -14,7 +14,7 @@ def webscrape(url):
     return text.strip()
 
 
-url = "https://en.wikipedia.org/wiki/LangChain"  # change to any URL you want
+url = "https://en.wikipedia.org/wiki/Sachin_Tendulkar"  # change to any URL you want
 data = webscrape(url)
 print(f"Scraped {len(data)} characters from {url}")
 
