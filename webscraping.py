@@ -26,7 +26,7 @@ vectorstore = Chroma.from_documents(docs, embeddings)
 
 
 from langchain.llms import Ollama
-llm = Ollama(model="mistral")
+llm = Ollama(model="gemma:2b")
 
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
