@@ -40,6 +40,6 @@ while True:
     question = input("You: ")
     if question.lower() == "exit":
         break
-    result = qa_chain({"query": question})
+    result = qa_chain.invoke({"query": question})
     print("\nBot:", result["result"], "\n")
 
